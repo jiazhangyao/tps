@@ -1,0 +1,11 @@
+{
+  "customers": [
+    {
+      "customerName": "user"
+    },
+     {"customerName": "张三"}
+  ],
+  "profile": {
+    "name": "typicode"
+  }
+}

@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+	<title>Document</title>
+    <style>
+        *{
+            padding: 0;margin:0;
+        }
+        div{
+            width:100%;height:400px;background: #eee;
+        }
+        span{
+            color:red;
+        }
+    </style>
+</head>
+<body>
+	<div id="obj"></div>
+    <span></span>
+</body>
+<script src="https://cdn.bootcss.com/jquery/1.9.1/jquery.min.js"></script>
+<script type="text/javascript">
+    var obj = document.getElementById("obj");  
+    var text=obj.clientWidth;
+    document.addEventListener('touchstart',touchStart, false);  
+    document.addEventListener('touchmove',touchMove, false);  
+    document.addEventListener('touchend',touchEnd, false);
+       
+    function touchStart(ev){
+        var ev=ev||window.event;
+        var start=ev.touches[0].clientX;
+        //console.log('start'+start);
+        //if(start>text/2)console.log('address');
+    }
+
+    function touchMove(ev){
+        var ev=ev||window.event;
+       // ev.preventDefault();
+        var move=ev.touches[0].clientX;
+        //console.log('move'+move);
+    }
+
+    function touchEnd(ev){
+        var words=document.querySelectorAll('span');
+        var ev=ev||window.event;
+        var end=ev.changedTouches[0].clientX;
+        var end=ev.changedTouches[0].screenX;
+        console.log('end'+end);
+        console.log('ends'+end);
+        if(end<text/2){
+            words[0].innerHTML='left';
+        }else{
+            words[0].innerHTML='right';
+        }
+    }
+
+
+    /*function touch (event){  
+        var event = event || window.event;  
+        switch(event.type){  
+            case "touchstart":  
+                obj.innerHTML = "Touch started (" + event.touches[0].clientX + "," + event.touches[0].clientY + ")";  
+                break;  
+            case "touchend":  
+                obj.innerHTML = "<br>Touch end (" + event.changedTouches[0].clientX + "," + event.changedTouches[0].clientY + ")";  
+                break;  
+            case "touchmove":  
+                event.preventDefault();  
+                obj.innerHTML = "<br>Touch moved (" + event.touches[0].clientX + "," + event.touches[0].clientY + ")";  
+                break;  
+        }      
+    }  */
+
+//console.log(obj.clientWidth);
+</script>
+</html>

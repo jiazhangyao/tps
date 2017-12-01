@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>菜鸟教程 React 实例</title>
+    <script src="https://cdn.bootcss.com/react/15.4.2/react.min.js"></script>
+    <script src="https://cdn.bootcss.com/react/15.4.2/react-dom.min.js"></script>
+    <script src="https://cdn.bootcss.com/babel-standalone/6.22.1/babel.min.js"></script>
+    <script src="https://cdn.bootcss.com/jquery/2.1.4/jquery.min.js"></script>
+  </head>
+ <body>
+    <div id="example"></div>
+    <script type="text/babel">
+      var UserGist = React.createClass({
+        getInitialState: function() {
+          return {
+            x:'ss',
+            y:[]
+          };
+        },
+
+        componentWillUnmount: function() {
+          this.serverRequest.abort();
+        },
+        
+        handClick:function(){
+            $.get("db.json", function (result) {
+            let data=result;
+            console.log(data.customers.length);
+            console.log(JSON.stringify(data.customers));
+            this.setState({
+                x:data.profile.name,
+                y:data.customers
+            })
+            }.bind(this));
+        },
+
+        render: function() {
+         const dateList = this.state.y.map((item) => {
+            console.log(item);
+            return (
+              <SubMenu key={item.hello} title={<span>{item.hello}</span>}>
+                
+              </SubMenu>
+            )
+          });
+          return (
+            <div>
+                <p onClick={this.handClick}>hello</p>
+                <p>{dateList}</p>
+
+            </div>
+          );
+        }
+      });
+
+      ReactDOM.render(
+        <UserGist/>,
+        document.getElementById('example')
+      );
+    </script>
+  </body>
+</html>

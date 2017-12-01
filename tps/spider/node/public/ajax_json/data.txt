@@ -1,0 +1,5 @@
+{
+		title : 'HELLO WORLD',
+		isAdmin : true,
+		list : ['新闻','军事','历史','政治']
+}
